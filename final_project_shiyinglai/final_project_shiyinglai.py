@@ -516,7 +516,9 @@ def trendplot_for_particular_artwork_type(artwork_type, apikey):
         plt.show()
     except:
         print("Sorry! No result! Please enter strings for all Parameters! Or please try another artwork type. :D")
-
+if __name__ == "__main__":
+    search_artwork_by_culture(apikey,culture,page)
+    
 
 
         
