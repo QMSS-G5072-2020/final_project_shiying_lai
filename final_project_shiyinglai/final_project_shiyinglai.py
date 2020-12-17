@@ -10,32 +10,32 @@ from datetime import date
 
 def search_artwork_by_culture(apikey,culture,page):
     """
-      Search Artwork by culture from the The Harvard Museum API based on query parameters.
+    Search Artwork by culture from the The Harvard Museum API based on query parameters.
     
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      culture : String
-                 The culture you want to look up.ex."Chinese"
-      page : String
-              This API could only return 100 records per request ar maxium. One request is counted as 1 page.
-              if you want to see more records. Enter the number of Page. ex. "2" or "3"  
-              Note: only integer in string format.Please enter "1" at the first time.
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    culture : String
+            The culture you want to look up.ex."Chinese"
+    page : String
+         This API could only return 100 records per request ar maxium. One request is counted as 1 page.
+         if you want to see more records. Enter the number of Page. ex. "2" or "3"  
+         Note: only integer in string format.Please enter "1" at the first time.
      
-     Returns
-     -------
-     pandas.core.frame.DataFrame
-         A dataframe that contains the 'id',"title",'objectnumber','century','worktypes','culture','technique','medium','description',
-         'classificationid','colorcount' based on thee query_parameter you entered.
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        A dataframe that contains the 'id',"title",'objectnumber','century','worktypes','culture','technique','medium','description',
+        'classificationid','colorcount' based on thee query_parameter you entered.
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>search_artwork_by_culture(apikey="your api key",culture="Chinese",page="1")
-     >>> A dataframe
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>search_artwork_by_culture(apikey="your api key",culture="Chinese",page="1")
+    >>> A dataframe
     """
     try:
         try:
@@ -64,33 +64,33 @@ def search_artwork_by_culture(apikey,culture,page):
 
 def function_search_for_artworks(title,vague_search,apikey):
     """
-      Search Artwork by title from the The Harvard Museum API based on query parameters.
+    Search Artwork by title from the The Harvard Museum API based on query parameters.
     
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      title : String
-             The title of the artwork you want to look up.ex."Pouring Vessel"
-      vague_search : Boolean
-                          True: return all the artwork contains the title 
-                          False:return one artwork has that exactly title
-                          Note: When you enter False, and your title is not exactly the same as the havard museum provide.
-                          You will receive nothing.           
-     Returns
-     -------
-     pandas.core.frame.DataFrame
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    title : String
+          The title of the artwork you want to look up.ex."Pouring Vessel"
+    vague_search : Boolean
+                 True: return all the artwork contains the title 
+                 False:return one artwork has that exactly title
+                 Note: When you enter False, and your title is not exactly the same as the havard museum provide.
+                 You will receive nothing.           
+    Returns
+    -------
+    pandas.core.frame.DataFrame
          A dataframe that contains some information about the artwork based on the title you entered.
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>function_search_for_artworks(title="Pouring Vessel", vague_search=True,apikey="your api key")
-     >>> A dataframe contains many records
-      >>>function_search_for_artworks(title="Pouring Vessel", vague_search=False,apikey="your api key")
-     >>> A dataframe contains one record  
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>function_search_for_artworks(title="Pouring Vessel", vague_search=True,apikey="your api key")
+    >>> A dataframe contains many records
+    >>>function_search_for_artworks(title="Pouring Vessel", vague_search=False,apikey="your api key")
+    >>> A dataframe contains one record  
     """
     try:
         final_result=[]
@@ -147,26 +147,26 @@ def function_search_for_artworks(title,vague_search,apikey):
 
 def find_artist(name,apikey):
     """
-      Search artist and get related information from the The Harvard Museum API based on query parameters.
+    Search artist and get related information from the The Harvard Museum API based on query parameters.
     
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      name : String
-               The full name, or first name, or last name of the a artist.
-     Returns
-     -------
-     pandas.core.frame.DataFrame
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    name : String
+         The full name, or first name, or last name of the a artist.
+    Returns
+    -------
+    pandas.core.frame.DataFrame
          A dataframe that contains the information about the artist you search
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>find_artist(name="Cronin",apikey="your api key")
-     >>> A dataframe
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>find_artist(name="Cronin",apikey="your api key")
+    >>> A dataframe
     """
     try:
         try:
@@ -191,26 +191,26 @@ def find_artist(name,apikey):
 
 def find_artist(name,apikey):
     """
-      Search artist and get related information from the The Harvard Museum API based on query parameters.
+    Search artist and get related information from the The Harvard Museum API based on query parameters.
     
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      name : String
-               The full name, or first name, or last name of the a artist.
-     Returns
-     -------
-     pandas.core.frame.DataFrame
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    name : String
+         The full name, or first name, or last name of the a artist.
+    Returns
+    -------
+    pandas.core.frame.DataFrame
          A dataframe that contains the information about the artist you search
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>find_artist(name="Cronin",apikey="your api key")
-     >>> A dataframe
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>find_artist(name="Cronin",apikey="your api key")
+    >>> A dataframe
     """
     try:
         try:
@@ -235,37 +235,37 @@ def find_artist(name,apikey):
 
 def search_for_images_by_size(width,height,apikey, page):
     """
-      Search images by size from the The Harvard Museum API based on query parameters.
+    Search images by size from the The Harvard Museum API based on query parameters.
     
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      width : String
-               The width of the image. ex.">1000"
-      height : String
-                The height of the image. ex. ">400"
-      page : String 
-              This funtion could only return 10 records per request. One request is counted as 1 page.
-              if you want to see more records. Enter the number of Page. ex. "2" or "3"  
-              Note: only integer in string format.Please enter "1" at the first time.
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    width : String
+          The width of the image. ex.">1000"
+    height : String
+           The height of the image. ex. ">400"
+    page : String 
+         This funtion could only return 10 records per request. One request is counted as 1 page.
+         if you want to see more records. Enter the number of Page. ex. "2" or "3"  
+         Note: only integer in string format.Please enter "1" at the first time.
      
-     Returns
-     -------
-     matplotlib.image.AxesImage
-         10 images 
+    Returns
+    -------
+    matplotlib.image.AxesImage
+        10 images 
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>import requests
-     >>>from PIL import Image
-     >>>from io import BytesIO
-     >>>import matplotlib. pyplot as plt 
-     >>>search_for_images_by_size(width=">1000",height=">400",apikey="your api key")
-     >>> An matplotlib.image.AxesImage
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>import requests
+    >>>from PIL import Image
+    >>>from io import BytesIO
+    >>>import matplotlib. pyplot as plt 
+    >>>search_for_images_by_size(width=">1000",height=">400",apikey="your api key")
+    >>> An matplotlib.image.AxesImage
     """
     try:
         try:
@@ -310,26 +310,26 @@ def search_for_images_by_size(width,height,apikey, page):
 
 def exhibition_explorer(apikey,exhibition):
     """
-     Get the information of artwork for a particualr exhibition in the Harvard Museum from the The Harvard Museum API based on query parameters.
+    Get the information of artwork for a particualr exhibition in the Harvard Museum from the The Harvard Museum API based on query parameters.
     
-     Parameters
-     ----------
-     apikey : String
-                your API key for The Harvard Museum API
-     exhibition : String
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    exhibition : String
                The exact name of exhibition that showed in the Harvard Museum website.
-     Returns
-     -------
-     pandas.core.frame.DataFrame
+    Returns
+    -------
+    pandas.core.frame.DataFrame
          A dataframe that contains the information about artworks appearing in that exhibition.
            
-     Examples
-     --------
-     >>>import pandas as pd 
-     >>>import json
-     >>>import urllib3
-     >>>exhibition_explorer(apikey="your api key",exhibition="Botticelli's Witness:  Changing Style in a Changing Florence")
-     >>> A dataframe
+    Examples
+    --------
+    >>>import pandas as pd 
+    >>>import json
+    >>>import urllib3
+    >>>exhibition_explorer(apikey="your api key",exhibition="Botticelli's Witness:  Changing Style in a Changing Florence")
+    >>> A dataframe
     """
 # Send the first request to get the exhibition id for the exhibitions
     http = urllib3.PoolManager()
@@ -366,26 +366,27 @@ def exhibition_explorer(apikey,exhibition):
 
 def artwork_for_today(apikey):
     """
-      Request an image of artwork that enter the Harvard Museum at today in history.
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-     Returns
-     -------
-     PIL.JpegImagePlugin.JpegImageFile
+    Request an image of artwork that enter the Harvard Museum at today in history.
+    
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    Returns
+    -------
+    PIL.JpegImagePlugin.JpegImageFile
          an image
               
-     Examples
-     --------
-     >>>from io import BytesIO
-     >>>from datetime import date
-     >>>import urllib3
-     >>>import json
-     >>>import pandas as pd
-     >>>import matplotlib. pyplot as plt
-     >>>artwork_for_today(apikey="your api key")
-     >>> An Image
+    Examples
+    --------
+    >>>from io import BytesIO
+    >>>from datetime import date
+    >>>import urllib3
+    >>>import json
+    >>>import pandas as pd
+    >>>import matplotlib. pyplot as plt
+    >>>artwork_for_today(apikey="your api key")
+    >>> An Image
     """
 #Read today's time
     today = date.today()
@@ -425,27 +426,28 @@ def artwork_for_today(apikey):
 
 def trendplot_for_particular_artwork_type(artwork_type, apikey):
     """
-      Gnerate a trend plot for the number of certain artwoork type during 10th -20th century's .
-      Parameters
-      ----------
-      apikey : String
-                your API key for The Harvard Museum API
-      artwork_type : String
-                         The artwork type you want to generate trend plot. ex."sculpture"
+    Gnerate a trend plot for the number of certain artwoork type during 10th -20th century's .
+    
+    Parameters
+    ----------
+    apikey : String
+           your API key for The Harvard Museum API
+    artwork_type : String
+                 The artwork type you want to generate trend plot. ex."sculpture"
       
-      Returns
-      -------
-      A bar plot
+    Returns
+    -------
+    A bar plot
           A trend plot for 10th -20th century.
               
-      Examples
-      --------
-      >>>import urllib3
-      >>>import json
-      >>>import pandas as pd
-      >>>import matplotlib. pyplot as plt
-      >>>trendplot_for_particular_artwork_type(artwork_type="sculpture", apikey="your api key")
-      >>> An trend plot
+    Examples
+    --------
+    >>>import urllib3
+    >>>import json
+    >>>import pandas as pd
+    >>>import matplotlib. pyplot as plt
+    >>>trendplot_for_particular_artwork_type(artwork_type="sculpture", apikey="your api key")
+    >>> An trend plot
     """
 #Send the first request to check how many pages I need to get all results
     try:
@@ -518,11 +520,7 @@ def trendplot_for_particular_artwork_type(artwork_type, apikey):
     except:
         print("Sorry! No result! Please enter strings for all Parameters! Or please try another artwork type. :D")
 
-        
-if __name__ == "__main__":
-        
-        
-        search_artwork_by_culture(apikey,culture,page)
+
     
 
 
