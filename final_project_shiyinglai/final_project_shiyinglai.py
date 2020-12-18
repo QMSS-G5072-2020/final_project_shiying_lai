@@ -145,7 +145,6 @@ def function_search_for_artworks(title,vague_search,apikey):
     except:
         print("Please enter strings for all parameters! Or try another title. :D")
 
-
 def find_artist(name,apikey):
     """
     Search artist and get related information from the The Harvard Museum API based on query parameters.
@@ -170,7 +169,6 @@ def find_artist(name,apikey):
     >>> A dataframe
     """
     final_result=[]
-    all_df=[]
     try:
         http = urllib3.PoolManager()
 #Since all query parameters are not sensitive. I have to request all.
