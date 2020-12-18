@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "final_project_shiyinglai"
-version = "0.5.0"
+version = "0.6.0"
 description = "This is an API client for HAM."
 authors = ["Shiying Lai <sl4849@columbia.edu>"]
 license = "MIT"
