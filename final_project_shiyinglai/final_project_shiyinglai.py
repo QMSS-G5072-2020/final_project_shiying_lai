@@ -170,11 +170,12 @@ def find_artist(name,apikey):
     """
     try:
         try:
+            
             http = urllib3.PoolManager()
             r = http.request('GET', 'https://api.harvardartmuseums.org/person',
                 fields = {
                     'apikey': apikey,
-                    'displayname':name
+                    'size':"100"
                 })
         except HTTPError as error:
             print(f'HTTP error occurred: {error}')
@@ -417,8 +418,8 @@ def artwork_for_today(apikey):
     """
 #Read today's time
     today = date.today()
-    Print(f'Hi~ Today is {today}')
-    Print("Start to prepare artwork for you! Good Luck")
+    print(f'Hi~ Today is {today}')
+    print("Start to prepare artwork for you! Good Luck")
     today_month_day=str(today)[5:]
     final_result=[]
     all_df=[]
