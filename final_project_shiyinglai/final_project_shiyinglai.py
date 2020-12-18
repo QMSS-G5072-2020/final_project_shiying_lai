@@ -174,6 +174,7 @@ def find_artist(name,apikey):
             r = http.request('GET', 'https://api.harvardartmuseums.org/person',
                 fields = {
                     'apikey': apikey,
+                    'displayname':name
                 })
         except HTTPError as error:
             print(f'HTTP error occurred: {error}')
@@ -490,8 +491,6 @@ def trendplot_for_particular_artwork_type(artwork_type, apikey):
 #Find all BCE first:Before the century, since there are confusing.
         finalqueryresult['patterns'] = finalqueryresult['century'].str.findall(r'BCE')
         finalqueryresult['patterns_string']=finalqueryresult['patterns'].astype(str)
-#Count the number of all BCE
-        bce=len(finalqueryresult[finalqueryresult['patterns_string']=="['BCE']"])
 #Create another dataframe exclude BCE
         df_without_bce=finalqueryresult[finalqueryresult['patterns_string']!="['BCE']"]
 #Count the number of artwork for each century
