@@ -12,7 +12,7 @@ urllib3 = "1.23"
 requests = "^2.25.1"
 matplotlib = "^3.3.3"
 datetime = "^4.3"
-pillow = "^8.0.1"
+
 
 [tool.poetry.dev-dependencies]
 sphinx = "^3.3.1"
