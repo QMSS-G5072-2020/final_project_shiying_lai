@@ -190,36 +190,50 @@ def find_artist(name,apikey):
     except:
         print("Please enter strings for all parameters! Or try another artist's name. :D")
 
-def find_artist(name,apikey):
+
+def search_for_images_by_width(width,apikey, page):
     """
-    Search artist and get related information from the The Harvard Museum API based on query parameters.
+    Search images by width from the The Harvard Museum API based on query parameters.
     
     Parameters
     ----------
     apikey : String
            your API key for The Harvard Museum API
-    name : String
-         The full name, or first name, or last name of the a artist.
+    width : String
+          The width of the image. ex.">1000"
+    page : String 
+         This funtion could only return 10 records per request. One request is counted as 1 page.
+         if you want to see more records. Enter the number of Page. ex. "2" or "3"  
+         Note: only integer in string format.Please enter "1" at the first time.
+     
     Returns
     -------
-    pandas.core.frame.DataFrame
-         A dataframe that contains the information about the artist you search
+    matplotlib.image.AxesImage
+        10 images 
            
     Examples
     --------
     >>>import pandas as pd 
     >>>import json
     >>>import urllib3
-    >>>find_artist(name="Cronin",apikey="your api key")
-    >>> A dataframe
+    >>>import requests
+    >>>from PIL import Image
+    >>>from io import BytesIO
+    >>>import matplotlib. pyplot as plt 
+    >>>search_for_images_by_size(width=">1000",apikey="your api key")
+    >>> An matplotlib.image.AxesImage
     """
     try:
         try:
+# request images by width and height
             http = urllib3.PoolManager()
-            r = http.request('GET', 'https://api.harvardartmuseums.org/person',
+            r = http.request('GET', 'https://api.harvardartmuseums.org/image',
                 fields = {
-                    'apikey': apikey,
-                })
+                    'apikey':apikey ,
+                    "size":"10",
+                    "width":width,
+                    "page":page
+            })
         except HTTPError as error:
             print(f'HTTP error occurred: {error}')
         except Exception as other_error:
@@ -229,12 +243,27 @@ def find_artist(name,apikey):
         data = json.loads(r.data)
         pd.set_option('display.max_colwidth', None)
         df = pd.DataFrame(data["records"])
-        all_items=df[df.apply(lambda row: row.astype(str).str.contains(name).any(), axis=1)]
-        return all_items[["personid","displayname","gender","culture","birthplace","datebegin","deathplace","deathplace","url"]]
+        urls=df['baseimageurl']
+        all=[]
+#collect all images' urls from the response
+        for u in urls:
+#read the images' urls into real image
+                response = requests.get(str(u))
+                img=Image.open(BytesIO(response.content))
+                all.append(img)
+  
+        plt.figure(figsize=(20,10))
+        columns = 5
+        for i, image in enumerate(all):
+            try:
+                plt.subplot(len(all) / columns + 1, columns, i + 1)
+                plt.imshow(image)
+            except:
+                continue
     except:
-        print("Please enter strings for all parameters! Or try another artist's name. :D")
-
-def search_for_images_by_size(width,height,apikey, page):
+        print("No result. Please enter string for all parameters. Or try other size. :D")
+        
+def search_for_images_by_height(height,apikey, page):
     """
     Search images by size from the The Harvard Museum API based on query parameters.
     
@@ -242,8 +271,6 @@ def search_for_images_by_size(width,height,apikey, page):
     ----------
     apikey : String
            your API key for The Harvard Museum API
-    width : String
-          The width of the image. ex.">1000"
     height : String
            The height of the image. ex. ">400"
     page : String 
@@ -265,7 +292,7 @@ def search_for_images_by_size(width,height,apikey, page):
     >>>from PIL import Image
     >>>from io import BytesIO
     >>>import matplotlib. pyplot as plt 
-    >>>search_for_images_by_size(width=">1000",height=">400",apikey="your api key")
+    >>>search_for_images_by_size(height=">400",apikey="your api key")
     >>> An matplotlib.image.AxesImage
     """
     try:
@@ -276,7 +303,6 @@ def search_for_images_by_size(width,height,apikey, page):
                 fields = {
                     'apikey':apikey ,
                     "size":"10",
-                    "width":width,
                     "Height":height,
                     "page":page
             })
@@ -308,7 +334,7 @@ def search_for_images_by_size(width,height,apikey, page):
                 continue
     except:
         print("No result. Please enter string for all parameters. Or try other size. :D")
-
+        
 def exhibition_explorer(apikey,exhibition):
     """
     Get the information of artwork for a particualr exhibition in the Harvard Museum from the The Harvard Museum API based on query parameters.
@@ -391,6 +417,8 @@ def artwork_for_today(apikey):
     """
 #Read today's time
     today = date.today()
+    Print(f'Hi~ Today is {today}')
+    Print("Start to prepare artwork for you! Good Luck")
     today_month_day=str(today)[5:]
     final_result=[]
     all_df=[]
@@ -415,7 +443,7 @@ def artwork_for_today(apikey):
             finalqueryresult = pd.concat(all_df, ignore_index=True)
         finalqueryresult['date'] = pd.to_datetime(finalqueryresult.date)
         finalqueryresult['new_date'] = finalqueryresult['date'].dt.strftime('%m-%d')
-#Match the time
+#Match the computer's time and artwork's date
         new_date=finalqueryresult[finalqueryresult['new_date']==today_month_day]
         #I just need it to display one photo for a particular date
         urls=new_date['baseimageurl'].iloc[0]
