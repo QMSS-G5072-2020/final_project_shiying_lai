@@ -145,6 +145,7 @@ def function_search_for_artworks(title,vague_search,apikey):
     except:
         print("Please enter strings for all parameters! Or try another title. :D")
 
+
 def find_artist(name,apikey):
     """
     Search artist and get related information from the The Harvard Museum API based on query parameters.
@@ -158,7 +159,7 @@ def find_artist(name,apikey):
     Returns
     -------
     pandas.core.frame.DataFrame
-         A dataframe that contains the information about the artist you search
+          A dataframe that contains the information about the artist you search
            
     Examples
     --------
@@ -168,28 +169,30 @@ def find_artist(name,apikey):
     >>>find_artist(name="Cronin",apikey="your api key")
     >>> A dataframe
     """
+    final_result=[]
+    all_df=[]
     try:
-        try:
-            
-            http = urllib3.PoolManager()
-            r = http.request('GET', 'https://api.harvardartmuseums.org/person',
-                fields = {
-                    'apikey': apikey,
-                    'size':"100"
-                })
-        except HTTPError as error:
-            print(f'HTTP error occurred: {error}')
-        except Exception as other_error:
-            print(f'Other error occurred: {other_error}')
-        else:
-             print('The request successes!')
-        data = json.loads(r.data)
-        pd.set_option('display.max_colwidth', None)
-        df = pd.DataFrame(data["records"])
-        all_items=df[df.apply(lambda row: row.astype(str).str.contains(name).any(), axis=1)]
-        return all_items[["personid","displayname","gender","culture","birthplace","datebegin","deathplace","deathplace","url"]]
+        http = urllib3.PoolManager()
+#Since all query parameters are not sensitive. I have to request all.
+# I checked there are 392 pages of records. 
+        for i in range(1,392):
+            r2 = http.request('GET', 'https://api.harvardartmuseums.org/person',
+                      fields = {
+                     'apikey': apikey,
+                    "size":"100",
+                    "page":str(i),
+                    })
+        print(str(i),end='')
+        record = json.loads(r2.data)
+        final_result.append(record)
+        df = pd.DataFrame(final_result)
+        df_1=pd.DataFrame(df["records"].iloc[0])
+        all=df_1[df_1.apply(lambda row: row.str.contains(name).any(), axis=1)]
+        return all
     except:
-        print("Please enter strings for all parameters! Or try another artist's name. :D")
+        print("No result.")
+        print("Please check your input only all strings will be accepted.")
+        print("Try to change an artist name.")
 
 
 def search_for_images_by_width(width,apikey, page):
