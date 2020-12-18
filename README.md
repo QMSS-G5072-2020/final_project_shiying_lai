@@ -12,15 +12,21 @@ $ pip install -i https://test.pypi.org/simple/ final_project_shiyinglai
 
 ## Features
 
-- TODO
+- This package will allow users to find any information and images of art objects that are available in the H Art Museums, as well as the information of artists whose artworks were displayed in the Museum.
 
 ## Dependencies
 
-- TODO
+- python = "^3.8"
+  pandas = "^1.1.5"
+  urllib3 = "1.23"
+  requests = "^2.25.1"
+  matplotlib = "^3.3.3"
+  datetime = "^4.3"
+  pillow = "8.0.0"
 
 ## Usage
 
-- TODO
+- Search data based on different query parameters
 
 ## Documentation
 
