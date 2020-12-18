@@ -145,53 +145,6 @@ def function_search_for_artworks(title,vague_search,apikey):
     except:
         print("Please enter strings for all parameters! Or try another title. :D")
 
-def find_artist(name,apikey):
-    """
-    Search artist and get related information from the The Harvard Museum API based on query parameters.
-    
-    Parameters
-    ----------
-    apikey : String
-           your API key for The Harvard Museum API
-    name : String
-         The full name, or first name, or last name of the a artist.
-    Returns
-    -------
-    pandas.core.frame.DataFrame
-          A dataframe that contains the information about the artist you search
-           
-    Examples
-    --------
-    >>>import pandas as pd 
-    >>>import json
-    >>>import urllib3
-    >>>find_artist(name="Cronin",apikey="your api key")
-    >>> A dataframe
-    """
-    final_result=[]
-    try:
-        http = urllib3.PoolManager()
-#Since all query parameters are not sensitive. I have to request all.
-# I checked there are 392 pages of records. 
-        for i in range(1,392):
-            r2 = http.request('GET', 'https://api.harvardartmuseums.org/person',
-                      fields = {
-                     'apikey': apikey,
-                    "size":"100",
-                    "page":str(i),
-                    })
-        print(str(i),end='')
-        record = json.loads(r2.data)
-        final_result.append(record)
-        df = pd.DataFrame(final_result)
-        df_1=pd.DataFrame(df["records"].iloc[0])
-        all=df_1[df_1.apply(lambda row: row.str.contains(name).any(), axis=1)]
-        return all
-    except:
-        print("No result.")
-        print("Please check your input only all strings will be accepted.")
-        print("Try to change an artist name.")
-
 
 def search_for_images_by_width(width,apikey, page):
     """
@@ -227,7 +180,7 @@ def search_for_images_by_width(width,apikey, page):
     """
     try:
         try:
-# request images by width and height
+# request images by width
             http = urllib3.PoolManager()
             r = http.request('GET', 'https://api.harvardartmuseums.org/image',
                 fields = {
