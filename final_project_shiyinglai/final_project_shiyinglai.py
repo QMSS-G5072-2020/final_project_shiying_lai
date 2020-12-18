@@ -9,7 +9,7 @@ from datetime import date
 
 
 def search_artwork_by_culture(apikey,culture,page):
-   """
+    """
     Search Artwork by culture from the The Harvard Museum API based on query parameters.
     
     Parameters
@@ -36,7 +36,7 @@ def search_artwork_by_culture(apikey,culture,page):
     >>>import urllib3
     >>>search_artwork_by_culture(apikey="your api key",culture="Chinese",page="1")
     >>> A dataframe
-   """
+    """
     try:
         try:
  # request data
