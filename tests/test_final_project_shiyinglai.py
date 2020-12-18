@@ -16,15 +16,15 @@ def test_version():
 
 
 def test_search_artwork_by_culture():
-    actual=type(search_artwork_by_culture(apikey=api_key,culture="British",page="1"))
+    actual=type(final_project_shiyinglai.search_artwork_by_culture(apikey=api_key,culture="British",page="1"))
     expected = pd.core.frame.DataFrame
     assert actual == expected 
 def test_find_artist():
-    actual=type(find_artist(name="Cronin",apikey=api_key))
+    actual=type(final_project_shiyinglai.find_artist(name="Cronin",apikey=api_key))
     expected = pd.core.frame.DataFrame
     assert actual == expected 
 def test_exhibition_explorer():
-    actual=type(exhibition_explorer(apikey=api_key,exhibition="Botticelli's Witness:  Changing Style in a Changing Florence"))
+    actual=type(final_project_shiyinglai.exhibition_explorer(apikey=api_key,exhibition="Botticelli's Witness:  Changing Style in a Changing Florence"))
     expected = pd.core.frame.DataFrame
     assert actual == expected 
     
