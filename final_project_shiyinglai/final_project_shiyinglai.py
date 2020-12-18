@@ -13,7 +13,7 @@ def search_artwork_by_culture(apikey,culture,page):
     Search Artwork by culture from the The Harvard Museum API based on query parameters.
     
     Parameters
-    ----------
+    -----------
     apikey : String
            your API key for The Harvard Museum API
     culture : String
@@ -22,7 +22,6 @@ def search_artwork_by_culture(apikey,culture,page):
          This API could only return 100 records per request ar maxium. One request is counted as 1 page.
          if you want to see more records. Enter the number of Page. ex. "2" or "3"  
          Note: only integer in string format.Please enter "1" at the first time.
-     
     Returns
     -------
     pandas.core.frame.DataFrame
